@@ -1,18 +1,19 @@
 #!/usr/bin/python3
-
-
+"""
+Entry to command interpreter
+"""
 import cmd
 from models import storage
 from models.base_model import BaseModel
 
 
-
 class HBNBCommand(cmd.Cmd):
-
-
+    """
+    Defines the HolbertonBnB command interpreter.
+    """
     prompt = "(hbnb) "
     classes = {"BaseModel"}
-    
+
     def do_quit(self, line):
         """ Quit command to exit the program"""
         return True
@@ -71,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
                 if obj not in storage.all().keys():
                     print("** no instance found **")
                 else:
-                    del(storage.all()[obj])
+                    del (storage.all()[obj])
                     storage.save()
         except IndexError:
             print("** instance id missing **")
@@ -123,17 +124,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
-
-            
-
-        
-
-
-
-
-
-
-
 
 
 def parse(arg):
