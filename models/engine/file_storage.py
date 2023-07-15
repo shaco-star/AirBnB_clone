@@ -1,10 +1,10 @@
 #!/usr/bin/python3
+import json
+import os
+
 """
 Defines the FileStorage class
 """
-
-import json
-from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -15,29 +15,23 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """Return the dictionary __objects"""
+        """Return dictionary"""
         return self.__objects
 
     def new(self, obj):
-        """Add new obj to existing dictionary of instances"""
+        """Create new object"""
         if obj:
-            k = "{}.{}".format(obj.__class__.__name__, obj.id)
-            self.__objects[k] = obj
+            key = f"{obj.__class__.__name__}.{obj.id}"
+            self.__objects[key] = obj
 
     def save(self):
-        """Save obj dictionaries to json file"""
-        dict = {}
-        for k, v in self.__objects.items():
-            dict[k] = v.to_dict()
+        """Convert obj to JSON and save it to __file_path"""
+        json_objects = {key: obj.to_dict() if hasattr(obj, 'to_dict') else obj for key, obj in self.__objects.items()}
         with open(self.__file_path, 'w') as f:
-            json.dump(dict, f)
+            json.dump(json_objects, f)
 
     def reload(self):
-        """If json file exists, convert obj dicts back to instances"""
-        try:
+        """Convert JSON to python object"""
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as f:
-                dict = json.load(f)
-            for v in dict.values():
-                self.new(eval(v['__class__'])(**v))
-        except FileNotFoundError:
-            return
+                self.__objects = json.load(f)
