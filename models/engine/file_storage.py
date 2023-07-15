@@ -26,7 +26,8 @@ class FileStorage:
 
     def save(self):
         """Convert obj to JSON and save it to __file_path"""
-        json_objects = {key: obj.to_dict() if hasattr(obj, 'to_dict') else obj for key, obj in self.__objects.items()}
+        json_objects = {key: obj.to_dict() if hasattr(obj, 'to_dict')
+                        else obj for key, obj in self.__objects.items()}
         with open(self.__file_path, 'w') as f:
             json.dump(json_objects, f)
 

@@ -24,7 +24,8 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation of an instance."""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """update the data and time when object is updated"""
@@ -32,7 +33,10 @@ class BaseModel:
         storage.save()
 
     def to_dict(self):
-        """Returns a dictionary containing all keys/values of __dict__ of the instance"""
+        """
+        Returns a dictionary containing all keys/values of
+        __dict__ of the instance
+        """
         dic = dict(self.__dict__)
         dic['__class__'] = self.__class__.__name__
         if 'created_at' in dic:
