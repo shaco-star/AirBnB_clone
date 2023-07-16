@@ -4,6 +4,7 @@ import unittest
 from models.review import Review
 from models.base_model import BaseModel
 
+
 class TestReview(unittest.TestCase):
     """Tests to check Review class"""
 
@@ -20,6 +21,7 @@ class TestReview(unittest.TestCase):
     def test_inheritance(self):
         """Test inheritance"""
         self.assertIsInstance(self.review, BaseModel)
+
 
 if __name__ == '__main__':
     """Main class"""
