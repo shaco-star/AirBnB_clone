@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-
+"""Creating BaseModel Class"""
 from datetime import datetime
 import uuid
 from models import storage
 
-"""Creating BaseModel Class"""
-
 
 class BaseModel:
+    """ Base class for Airbnb clone project"""
     def __init__(self, *args, **kwargs):
         """Initialization of the BaseModel class"""
         if kwargs:

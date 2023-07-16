@@ -5,6 +5,12 @@ Entry to command interpreter
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,14 +18,15 @@ class HBNBCommand(cmd.Cmd):
     Defines the HolbertonBnB command interpreter.
     """
     prompt = "(hbnb) "
-    classes = {"BaseModel"}
+    classes = {"BaseModel", "State", "City",
+               "Amenity", "Place", "Review", "User"}
 
     def do_quit(self, line):
-        """ Quit command to exit the program"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, line):
-        """ Quit signal to exit the program """
+        """Quit signal to exit the program """
         print("")
         return True
 
@@ -39,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
 
     def do_show(self, args):
-        """ print a class instance of a given id"""
+        """print a class instance of a given id"""
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -58,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_destroy(self, args):
-        """" Delete a class instance of a given id"""
+        """"Delete a class instance of a given id"""
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -78,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_all(self, args):
-        """ print all instances of a given class"""
+        """print all instances of a given class"""
         objs = []
         if len(args) == 0 or args in HBNBCommand.classes:
             for v in storage.all().values():
@@ -88,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, args):
-        """ update an instance of a given id"""
+        """update an instance of a given id"""
         if len(args) == 0:
             print("** class name missing **")
             return
