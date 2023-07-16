@@ -4,6 +4,7 @@ import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     """Tests to check BaseModel class"""
     def setUp(self):
@@ -17,7 +18,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self):
         """Test str"""
-        expected = "[BaseModel] ({}) {}".format(self.model.id, self.model.__dict__)
+        expected = "[BaseModel] ({}) {}".format(self.model.id,
+                                                self.model.__dict__)
         self.assertEqual(str(self.model), expected)
 
     def test_save(self):
@@ -33,5 +35,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(model_dict["created_at"]), str)
         self.assertEqual(type(model_dict["updated_at"]), str)
 
+
 if __name__ == '__main__':
+    """Main class"""
     unittest.main()
