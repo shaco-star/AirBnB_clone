@@ -1,0 +1,36 @@
+.places h1 {
+  font-size: 30px;
+}
+
+.artical-container {
+  display: grid;
+  grid-template-areas:
+    "home  house"
+    "suite suite";
+}
+
+article {
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+}
+
+article h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.home {
+  grid-area: home;
+}
+
+.house {
+  grid-area: house;
+}
+
+.suite {
+  grid-area: suite;
+ margin-inline: auto;
+}
